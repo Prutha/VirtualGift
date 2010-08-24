@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <ModulePrefs title="Gifts part 8 - Views">
+  <ModulePrefs title="Gifts part 7 - Working with Remote content">
     <Require feature="opensocial-0.8"/>
-    <Require feature="views" />
-    <Preload href="http://opensocial-resources.googlecode.com/svn/samples/tutorial/tags/api-0.8/gifts.json" />
+    <Preload href="http://opensocial-resources.googlecode.com/svn/samples/tutorial/branches/io/gifts.json" />
   </ModulePrefs>
-  <Content type="html" view="home,profile,canvas">
+  <Content type="html">
     <![CDATA[
       <script>
         var globalGivenGifts = {};
         var globalFriends = {};
         var globalGiftList = ['a cashew nut', 'a peanut', 'a hazelnut', 'a red pistaschio nut'];
-        var globalView = gadgets.views.getCurrentView().getName();
         
         function postActivity(nut, friend) {
           var title = 'gave ' + globalFriends.getById(friend).getDisplayName() + ' ' + globalGiftList[nut];
@@ -148,36 +146,31 @@
           var viewerFriends = data.get('viewerFriends').getData();
           var giftData = data.get('data').getData();
           var viewerFriendData = data.get('viewerFriendData').getData();
-          
-          if (globalView == "canvas") {
-            html = new Array();
-            html.push('<select id="person">');
-            viewerFriends.each(function(person) {
-              if (person.getId()) {
-                html.push('<option value="', person.getId(), '">', person.getDisplayName(), '</option>');
-              }
-            });
-            html.push('</select>');
-            document.getElementById('friends').innerHTML = html.join('');
-            
-            updateGiftList(viewer, giftData, viewerFriends);
-            document.getElementById('give').style.display = "block";
-          } else {
-            document.getElementById('more').style.display = "block";
-          }
+
+          html = new Array();
+          html.push('<select id="person">');
+          viewerFriends.each(function(person) {
+            if (person.getId()) {
+              html.push('<option value="', person.getId(), '">', person.getDisplayName(), '</option>');
+            }
+          });
+          html.push('</select>');
+          document.getElementById('friends').innerHTML = html.join('');
           
           globalFriends = viewerFriends;
 
+          updateGiftList(viewer, giftData, viewerFriends);
           updateReceivedList(viewer, viewerFriendData, viewerFriends);
         }
 
         function onGiftList(data) {
            if (data.data && data.data.length) {
              globalGiftList = data.data;
-           } 
+           }
+           
            loadFriends();
            makeOptionsMenu();
-        };
+        }
 
         function requestGiftList(url) {
           var params = {};
@@ -186,27 +179,19 @@
         }
 
         function init() {
-           requestGiftList('http://opensocial-resources.googlecode.com/svn/samples/tutorial/tags/api-0.8/gifts.json');
-        }
-        
-        function navigateToCanvas() {
-          var canvas = gadgets.views.getSupportedViews()["canvas"];
-          gadgets.views.requestNavigateTo(canvas);
+           requestGiftList('http://opensocial-resources.googlecode.com/svn/samples/tutorial/branches/io/gifts.json');
         }
         
         gadgets.util.registerOnLoadHandler(init);
       </script>
       <div id='main'>
-        <div id='give' style='display: none;'>
+        <div id='give'>
           <form id='gift_form'>
             Give <span id='gifts'></span> to <span id='friends'></span>. <a href='javascript:void(0);' onclick='giveGift();'>Give!</a>
           </form>
         </div>
         <div id='given'></div>
         <div id='received'</div>
-        <div id='more' style='display: none;'>
-          <a href='javascript:void(0);' onclick='navigateToCanvas();'>More</a>
-        </div>
       </div>
     ]]>
   </Content>
