@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
-  <ModulePrefs title="Virtual Gift">
+  <ModulePrefs title="Virtual Gift Portal - 1">
     <Require feature="opensocial-0.8"/>
     <Require feature="dynamic-height"/>
     <Require feature="views"/>
@@ -30,7 +30,6 @@
         var params = {
           callback: changeSelectedTab
         };
-        
         params.contentContainer = document.getElementById("GiveGifts");
         tabs.addTab("Give Gifts!", params);
         
@@ -58,6 +57,7 @@
           }
         }
         requestGiftList('http://opensocial-resources.googlecode.com/svn/samples/tutorial/tags/api-0.8/gifts.json');
+        loadFriends();
       }
       
       function changeSelectedTab() {
@@ -117,7 +117,7 @@
             }
           });
           html.push('</ul>');
-          document.getElementById('received').innerHTML = html.join('');
+          document.getElementById('rec').innerHTML = html.join('');
         }
 
         function updateGiftList(viewer, data, friends) {
@@ -142,7 +142,7 @@
             if (i.hasOwnProperty) {
               for (j in globalGivenGifts[i]) {
                 if (j.hasOwnProperty) {
-                  html.push('<li>', friends.getById(i).getDisplayName(), ' received ', globalGiftList[globalGivenGifts[i][j]], '</li>');
+                  html.push('<li>', friends.getById(i).getDisplayName(), ' rec ', globalGiftList[globalGivenGifts[i][j]], '</li>');
                 }
               }
             }
@@ -233,6 +233,7 @@
           
           globalFriends = viewerFriends;
 
+			
           updateReceivedList(viewer, viewerFriendData, viewerFriends);
         }
 
@@ -267,7 +268,7 @@
     </div>
     <div id="Receive">
     	<br>
-    	<div id='received'></div>
+    	<div id='rec'></div>
     </div>
     ]]>
   </Content>
