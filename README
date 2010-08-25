@@ -37,8 +37,8 @@
         params.contentContainer = document.getElementById("Sent");
         tabs.addTab("Sent", params);
         
-        params.contentContainer = document.getElementById("Received");
-        tabs.addTab("Received", params);
+        params.contentContainer = document.getElementById("Receive");
+        tabs.addTab("Receive", params);
         
         tabs.alignTabs("left", 3);
 
@@ -265,7 +265,7 @@
  		<br> 
     	<div id='given'></div>
     </div>
-    <div id="Received">
+    <div id="Receive">
     	<br>
     	<div id='received'></div>
     </div>
