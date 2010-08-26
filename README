@@ -220,11 +220,11 @@
         
         <font size="4" color="#02679C">
         You have given:
-            </font><br>
+        </font><br>
         <div id='given'></div>
         <font size="4" color="#02679C">
             You have received:
-            </font><br>
+        </font><br>
         <div id='received'</div>
         <div id='more' style='display: none;'>
           <a href='javascript:void(0);' onclick='navigateToCanvas();'>More</a>
