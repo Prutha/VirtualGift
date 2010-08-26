@@ -1,84 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <ModulePrefs title="Virtual Gift Portal">
-    <Require feature="opensocial-0.8"/>
-    <Require feature="dynamic-height"/>
-    <Require feature="views"/>
-    <Require feature="tabs"/>
-  </ModulePrefs>
-  
-    <Content type="html" view="home,profile,canvas">
-    <![CDATA[
-    <!-- Load the application-specific css -->
-    <link href="http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/tabs.css" type="text/css" rel="stylesheet">
-    
-    <script type="text/javascript">
-      var tabs = null;
-      var globalGivenGifts = {};
-      var globalFriends = {};
-      var globalGiftList = ['a cashew nut', 'a peanut', 'a hazelnut', 'a red pistaschio nut'];
-      var globalView = gadgets.views.getCurrentView().getName();
-      
-      gadgets.util.registerOnLoadHandler(onLoadHandler);
-      
-      function onLoadHandler() {
-        init();
-      }
-      
-      function init() {
-        tabs = new gadgets.TabSet(__MODULE_ID__, null, document.getElementById('tabs_div'));
-        var params = {
-          callback: changeSelectedTab
-        };
+    <ModulePrefs
+            title="Virtual Gift">
+        <Require feature="opensocial-0.8" />
+        <Require feature="views" />
+    </ModulePrefs>
+    <Content type="html" view="home,profile,canvas"><![CDATA[<script>
+        var globalGivenGifts = {};
+        var globalFriends = {};
+        var globalGiftList = ['a cashew nut', 'a peanut', 'a hazelnut', 'a red pistaschio nut'];
+        var globalView = gadgets.views.getCurrentView().getName();
         
-        params.contentContainer = document.getElementById("GiveGifts");
-        tabs.addTab("Give Gifts!", params);
-        
-        params.contentContainer = document.getElementById("Sent");
-        tabs.addTab("Sent", params);
-        
-        params.contentContainer = document.getElementById("Received");
-        tabs.addTab("Received", params);
-        
-        tabs.alignTabs("left", 3);
-
-        var tabHeaders = document.getElementById("tabs_div_header").rows[0].cells;
-        var value = null;
-        var html = null;
-        for (var i in tabHeaders) {
-          if (tabHeaders[i].className && tabHeaders[i].className.match(/tablib_selected/)) {
-            value = tabHeaders[i].innerHTML;
-            html = "<span class='tablib_extension_left_selected'></span> " + value;
-            tabHeaders[i].innerHTML = html;
-          }
-          if (tabHeaders[i].className && tabHeaders[i].className.match(/tablib_unselected/)) {
-            value = tabHeaders[i].innerHTML;
-            html = "<span class='tablib_extension_left_unselected'></span> " + value;
-            tabHeaders[i].innerHTML = html;
-          }
-        }
-        requestGiftList('http://opensocial-resources.googlecode.com/svn/samples/tutorial/tags/api-0.8/gifts.json');
-      }
-      
-      function changeSelectedTab() {
-        if (document.getElementById("tabs_div_header")) {
-          var tabHeaders = document.getElementById("tabs_div_header").rows[0].cells;
-          for (var i in tabHeaders) {
-            if (tabHeaders[i].className && tabHeaders[i].className.match(/tablib_selected/)) {
-              if (tabHeaders[i].childNodes[0].className) {
-                tabHeaders[i].childNodes[0].className = "tablib_extension_left_selected";
-              }
-            }
-            if (tabHeaders[i].className !== undefined && tabHeaders[i].className.match(/tablib_unselected/)) {
-              if (tabHeaders[i].childNodes[0].className) {
-                tabHeaders[i].childNodes[0].className = "tablib_extension_left_unselected";
-              }
-            }
-          }
-        }
-      }
-      
-      function postActivity(nut, friend) {
+        function postActivity(nut, friend) {
           var title = 'gave ' + globalFriends.getById(friend).getDisplayName() + ' ' + globalGiftList[nut];
           var params = {};
           params[opensocial.Activity.Field.TITLE] = title;
@@ -167,10 +100,10 @@
           var req = opensocial.newDataRequest();
           req.add(req.newUpdatePersonAppDataRequest("VIEWER", 'gifts', json));
           req.add(req.newFetchPersonRequest("VIEWER"), 'viewer');
-
-var viewerFriends = opensocial.newIdSpec({ "userId" : "VIEWER", "groupId" : "FRIENDS" });
-var opt_params = {};
-opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
+					
+					var viewerFriends = opensocial.newIdSpec({ "userId" : "VIEWER", "groupId" : "FRIENDS" });
+					var opt_params = {};
+					opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
           req.add(req.newFetchPeopleRequest(viewerFriends, opt_params), 'viewerFriends');
 
           var viewer = opensocial.newIdSpec({ "userId" : "VIEWER" });
@@ -195,10 +128,10 @@ opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
         function loadFriends() {
           var req = opensocial.newDataRequest();
           req.add(req.newFetchPersonRequest("VIEWER"), 'viewer');
-
-var viewerFriends = opensocial.newIdSpec({ "userId" : "VIEWER", "groupId" : "FRIENDS" });
-var opt_params = {};
-opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
+					
+					var viewerFriends = opensocial.newIdSpec({ "userId" : "VIEWER", "groupId" : "FRIENDS" });
+					var opt_params = {};
+					opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
           req.add(req.newFetchPeopleRequest(viewerFriends, opt_params), 'viewerFriends');
 
           var viewer = opensocial.newIdSpec({ "userId" : "VIEWER" });
@@ -239,7 +172,7 @@ opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
         function onGiftList(data) {
            if (data.data && data.data.length) {
              globalGiftList = data.data;
-           }
+           } 
            loadFriends();
            makeOptionsMenu();
         };
@@ -249,26 +182,37 @@ opt_params[opensocial.DataRequest.PeopleRequestFields.MAX] = 100;
           params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
           gadgets.io.makeRequest(url, onGiftList, params);
         }
+
+        function init() {
+           requestGiftList('http://opensocial-resources.googlecode.com/svn/samples/tutorial/tags/api-0.8/gifts.json');
+        }
         
-    </script>
-    <div id="tabs_div"></div>
-    <div id="GiveGifts">
-     <br>Select a gift to send:<br>
-     <span id='gifts'></span><br>
-     Select A friend:<br>
-     <span id='friends'></span>
-     <br><br>
-     <a href='javascript:void(0);' onclick='giveGift();'>Give!</a>
-     <br>
-    </div>
-    <div id="Sent">
-  <br>
-     <div id='given'></div>
-    </div>
-    <div id="Received">
-     <br>
-     <div id='received'></div>
-    </div>
-    ]]>
-  </Content>
+        function navigateToCanvas() {
+          var canvas = gadgets.views.getSupportedViews()["canvas"];
+          gadgets.views.requestNavigateTo(canvas);
+        }
+        
+        gadgets.util.registerOnLoadHandler(init);
+      </script>
+      <div id='main'>
+        <div id='give' style='display: none;'>
+          <form id='gift_form'>
+            Select A Gift:<br>
+            <span id='gifts'></span> <br>
+            Select A Friend:<br>
+            <span id='friends'></span>
+            <br>
+            <a href='javascript:void(0);' onclick='giveGift();'>
+            	<img src="http://www.google.com/imgres?imgurl=http://media.merchantcircle.com/22618758/Christian_Gift_full.jpeg&imgrefurl=http://www.merchantcircle.com/business/Christian.Gift.805-652-7046&usg=__aVf8FZCwdOK507bY-rgxRVqnCkU=&h=50&w=50&sz=2&hl=en&start=0&zoom=1&tbnid=8mDN7LLenfIRoM:&tbnh=50&tbnw=50&prev=/images%3Fq%3DGift%2Bimage%26um%3D1%26hl%3Den%26client%3Dfirefox-a%26tbo%3D1%26rls%3Dorg.mozilla:en-US:official%26biw%3D1280%26bih%3D579%26tbs%3Disch:1,itp:clipart,imgo:1,isz:ex,iszw:50,iszh:50&um=1&itbs=1&iact=hc&vpx=691&vpy=328&dur=474&hovh=50&hovw=50&tx=85&ty=16&ei=-rJ1TJHQN6eU4gba5JHrBQ&oei=-rJ1TJHQN6eU4gba5JHrBQ&esq=1&page=1&ndsp=16&ved=1t:429,r:4,s:0" alt="Angry face" />
+            </a>
+          </form>
+        </div>
+        <div id='given'></div>
+        <div id='received'</div>
+        <div id='more' style='display: none;'>
+          <a href='javascript:void(0);' onclick='navigateToCanvas();'>More</a>
+        </div>
+      </div>]]>
+      </Content>
 </Module>
+
