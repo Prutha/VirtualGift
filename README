@@ -196,28 +196,44 @@
         
         gadgets.util.registerOnLoadHandler(init);
       </script>
-      <div id='main'>
-        <div id='give' style='display: none;'>
-          <form id='gift_form'>
-            <font size="4" color="#02679C">
+      <table border="0">
+  		<tr>
+    	<font size="4" color="#02679C">
             Select A Gift:
-            </font><br>
-            <span id='gifts'></span> <br>
-            <font size="4" color="#02679C"><br>
+        </font><br>
+  		</tr>
+  		<tr>
+    		<span id='gifts'></span> <br>
+  		</tr>
+  		<tr>
+  			<font size="4" color="#02679C"><br>
             Select A Friend:<br>
             </font>
-            <span id='friends'></span>
-            <br>
-            <a href='javascript:void(0);' onclick='giveGift();'>
+  		</tr>
+  		<tr>
+  			<span id='friends'></span>
+  		</tr><br><br>
+  		<tr></tr>
+  		<tr>
+  			<a href='javascript:void(0);' onclick='giveGift();'>
             	<img src="http://dolphinblueinc.files.wordpress.com/2009/12/gift11.jpg" alt="Gift" height = 70px width=70px />
             </a>
-          </form>
-        </div>
-        <div id='given'></div>
-        <div id='received'</div>
-        <div id='more' style='display: none;'>
-          <a href='javascript:void(0);' onclick='navigateToCanvas();'>More</a>
-        </div>
-      </div>]]>
+  		</tr>
+  		<tr></tr>
+  		<hr size="10" color"#ff0000"> 
+  		<tr>
+  			<font size="4" color="#02679C"><br>
+            <div id='given'></div><br>
+            </font>	
+  		</tr>
+  		<tr>
+  			<font size="4" color="#02679C"><br>
+            <div id='received'</div><br>
+            </font>
+  			
+  		</tr>
+	  </table>
+      ]]>
       </Content>
 </Module>
+
