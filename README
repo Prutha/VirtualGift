@@ -5,7 +5,9 @@
         <Require feature="opensocial-0.8" />
         <Require feature="views" />
     </ModulePrefs>
-    <Content type="html" view="home,profile,canvas"><![CDATA[<script>
+    <Content type="html" view="home,profile,canvas"><![CDATA[
+    <link href="http://opensocial-resources.googlecode.com/svn/samples/orkut_ui/tabs.css" type="text/css" rel="stylesheet">
+    <script>
         var globalGivenGifts = {};
         var globalFriends = {};
         var globalGiftList = ['a cashew nut', 'a peanut', 'a hazelnut', 'a red pistaschio nut'];
@@ -197,13 +199,17 @@
       <div id='main'>
         <div id='give' style='display: none;'>
           <form id='gift_form'>
-            Select A Gift:<br>
+            <font size="4" color="#02679C">
+            Select A Gift:
+            </font><br>
             <span id='gifts'></span> <br>
+            <font size="4" color="#02679C"><br>
             Select A Friend:<br>
+            </font>
             <span id='friends'></span>
             <br>
             <a href='javascript:void(0);' onclick='giveGift();'>
-            	<img src="http://www.google.com/imgres?imgurl=http://media.merchantcircle.com/22618758/Christian_Gift_full.jpeg&imgrefurl=http://www.merchantcircle.com/business/Christian.Gift.805-652-7046&usg=__aVf8FZCwdOK507bY-rgxRVqnCkU=&h=50&w=50&sz=2&hl=en&start=0&zoom=1&tbnid=8mDN7LLenfIRoM:&tbnh=50&tbnw=50&prev=/images%3Fq%3DGift%2Bimage%26um%3D1%26hl%3Den%26client%3Dfirefox-a%26tbo%3D1%26rls%3Dorg.mozilla:en-US:official%26biw%3D1280%26bih%3D579%26tbs%3Disch:1,itp:clipart,imgo:1,isz:ex,iszw:50,iszh:50&um=1&itbs=1&iact=hc&vpx=691&vpy=328&dur=474&hovh=50&hovw=50&tx=85&ty=16&ei=-rJ1TJHQN6eU4gba5JHrBQ&oei=-rJ1TJHQN6eU4gba5JHrBQ&esq=1&page=1&ndsp=16&ved=1t:429,r:4,s:0" alt="Angry face" />
+            	<img src="http://dolphinblueinc.files.wordpress.com/2009/12/gift11.jpg" alt="Gift" height = 70px width=70px />
             </a>
           </form>
         </div>
@@ -215,4 +221,3 @@
       </div>]]>
       </Content>
 </Module>
-
