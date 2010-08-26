@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs
-            title="Virtual Gift">
+            title="Virtual Gifts">
         <Require feature="opensocial-0.8" />
         <Require feature="views" />
     </ModulePrefs>
@@ -216,8 +216,12 @@
             	<img src="http://dolphinblueinc.files.wordpress.com/2009/12/gift11.jpg" alt="Gift" height = 70px width=70px border="0" />
             </a><br>
           </form>
-        </div><br><br>
-           <font size="4" color="#02679C">
+        </div><br>
+        <a>
+        <img src="http://www.pimpmycom.com/tutorials/wavelength/4a.jpg" alt="Gift" height=70px width=70px border="0" />
+       </a>
+        
+        <font size="4" color="#02679C">
             You have given:
             </font><br>
         <div id='given'></div>
