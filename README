@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
     <ModulePrefs
-            title="Virtual Gifts">
+            title="Virtual Gift">
         <Require feature="opensocial-0.8" />
         <Require feature="views" />
     </ModulePrefs>
@@ -217,14 +217,16 @@
             </a><br>
           </form>
         </div><br>
+        <img src="http://www.pimpmycom.com/tutorials/wavelength/4a.jpg" alt="Gift" height = 70px width=70px border="0" />
+       
         
         <font size="4" color="#02679C">
-        You have given:
-        </font><br>
+            You have given:
+            </font><br>
         <div id='given'></div>
         <font size="4" color="#02679C">
             You have received:
-        </font><br>
+            </font><br>
         <div id='received'</div>
         <div id='more' style='display: none;'>
           <a href='javascript:void(0);' onclick='navigateToCanvas();'>More</a>
