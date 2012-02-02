@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs
-            title="Virtual Gift">
+    
+	<ModulePrefs
+            title="Virtual Gift Sandbox">
         <Require feature="opensocial-0.8" />
         <Require feature="views" />
     </ModulePrefs>
